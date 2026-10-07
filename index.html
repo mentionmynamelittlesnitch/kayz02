@@ -1,90 +1,78 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <title>My Game Hub</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: #111;
-            color: white;
-            text-align: center;
-        }
-
-        header {
-            background: #222;
-            padding: 30px;
-        }
-
-        h1 {
-            margin: 0;
-            font-size: 40px;
-        }
-
-        .games {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 40px;
-        }
-
-        .game {
-            background: #222;
-            width: 250px;
-            padding: 20px;
-            border-radius: 15px;
-        }
-
-        .game img {
-            width: 100%;
-            border-radius: 10px;
-        }
-
-        .game a {
-            display: block;
-            margin-top: 15px;
-            padding: 12px;
-            background: #444;
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-        }
-
-        .game a:hover {
-            background: #666;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Game Hub</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-<header>
-    <h1>🎮 My Game Hub</h1>
-    <p>Play my games!</p>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-icon">🎮</span> GAME <b>HUB</b></a>
+  <nav><a class="active" href="#games">Games</a><a href="music.html">♫ Music</a><a href="#tools">⚒ Tools</a></nav>
+  <label class="search"><span>⌕</span><input id="search" type="search" placeholder="Search games..." aria-label="Search games"></label>
 </header>
-
-<div class="games">
-
-    <div class="game">
-        <h2>Game 1</h2>
-        <p>My first game</p>
-        <a href="#">PLAY</a>
+<main>
+  <section class="hero">
+    <p class="eyebrow">YOUR OWN LITTLE CORNER OF THE INTERNET</p>
+    <h1>WELCOME TO THE <span>GAME HUB</span></h1>
+    <p>Play games, listen to your music, and have fun.</p>
+  </section>
+  <section id="games">
+    <div class="section-heading"><h2>🎮 Games</h2><span id="count">7 games</span></div>
+    <div class="game-grid" id="gameGrid">
+      <article class="game-card" data-name="subway surfers">
+        <div class="art art-subway"><span>🏃</span><strong>SUBWAY<br>SURFERS</strong></div>
+        <div class="card-info"><h3>Subway Surfers</h3><p>Official game site</p><a class="play" href="https://subwaysurfers.com/" target="_blank" rel="noopener">OPEN GAME ↗</a></div>
+      </article>
+      <article class="game-card" data-name="cookie clicker">
+        <div class="art art-cookie"><span>🍪</span><strong>COOKIE<br>CLICKER</strong></div>
+        <div class="card-info"><h3>Cookie Clicker</h3><p>Click to bake cookies</p><a class="play purple" href="https://orteil.dashnet.org/cookieclicker/" target="_blank" rel="noopener">PLAY ↗</a></div>
+      </article>
+      <article class="game-card" data-name="snake io snakeio">
+        <div class="art art-snake"><span>🐍</span><strong>SNAKE.IO</strong></div>
+        <div class="card-info"><h3>Snake.io</h3><p>Official game website</p><a class="play green" href="https://snake.io/" target="_blank" rel="noopener">OPEN GAME ↗</a></div>
+      </article>
+      <article class="game-card" data-name="1v1 lol 1v1lol">
+        <div class="art art-shooter"><span>🎯</span><strong>1v1.LOL</strong></div>
+        <div class="card-info"><h3>1v1.LOL</h3><p>Official game website</p><a class="play red" href="https://1v1.lol/" target="_blank" rel="noopener">OPEN GAME ↗</a></div>
+      </article>
+      <article class="game-card" data-name="roblox">
+        <div class="art art-roblox"><span>🧱</span><strong>ROBLOX</strong></div>
+        <div class="card-info"><h3>Roblox</h3><p>Official Roblox website</p><a class="play slate" href="https://www.roblox.com/" target="_blank" rel="noopener">OPEN ROBLOX ↗</a></div>
+      </article>
+      <article class="game-card" data-name="husky valley husky valley roblox">
+        <div class="art art-husky"><span>🐺</span><strong>HUSKY VALLEY</strong></div>
+        <div class="card-info"><h3>Husky Valley</h3><p>Find it on Roblox</p><a class="play slate" href="https://www.roblox.com/discover/" target="_blank" rel="noopener">FIND GAME ↗</a></div>
+      </article>
+      <article class="game-card" data-name="wheelie motorcycle bike">
+        <div class="art art-wheelie"><span>🏍️</span><strong>WHEELIE<br>CHALLENGE</strong></div>
+        <div class="card-info"><h3>Wheelie Challenge</h3><p>Your own playable mini-game</p><a class="play orange" href="wheelie.html">PLAY NOW →</a></div>
+      </article>
     </div>
-
-    <div class="game">
-        <h2>Game 2</h2>
-        <p>Another game</p>
-        <a href="#">PLAY</a>
-    </div>
-
-    <div class="game">
-        <h2>Game 3</h2>
-        <p>Coming soon</p>
-        <a href="#">PLAY</a>
-    </div>
-
-</div>
-
+    <p class="empty hidden" id="empty">No games match your search.</p>
+  </section>
+  <section class="feature-row" id="tools">
+    <div class="feature"><span class="feature-icon">🎵</span><div><h3>Your Music</h3><p>Choose audio files from your device and listen in your browser.</p><a class="small-btn" href="music.html">OPEN MUSIC PLAYER →</a></div></div>
+    <div class="feature"><span class="feature-icon">🏁</span><div><h3>More games soon</h3><p>This is your hub. Add more cards as you build your collection.</p><a class="small-btn" href="#games">BROWSE GAMES ↑</a></div></div>
+  </section>
+  <p class="note">Game links open third-party websites. Availability depends on each service and your network's rules.</p>
+</main>
+<footer>GAME HUB <span>Made for fun ✦</span></footer>
+<script>
+const search = document.getElementById('search');
+const cards = [...document.querySelectorAll('.game-card')];
+search.addEventListener('input', () => {
+  const q = search.value.trim().toLowerCase();
+  let shown = 0;
+  cards.forEach(card => {
+    const match = card.dataset.name.includes(q);
+    card.classList.toggle('hidden', !match);
+    if (match) shown++;
+  });
+  document.getElementById('count').textContent = shown + (shown === 1 ? ' game' : ' games');
+  document.getElementById('empty').classList.toggle('hidden', shown !== 0);
+});
+</script>
 </body>
 </html>

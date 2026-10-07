@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Music Player - Game Hub</title><link rel="stylesheet" href="style.css"></head>
+<body><div class="page-wrap"><a class="back" href="index.html">← Back to Game Hub</a><section class="panel"><p class="eyebrow">YOUR PERSONAL PLAYER</p><h1>🎵 Music Player</h1><p class="muted">Choose audio files stored on your device. The files are played in your browser and are not uploaded to this website.</p>
+<label class="file-label" for="songs" style="display:inline-block">＋ Choose songs</label><input id="songs" type="file" accept="audio/*" multiple style="display:none">
+<div class="panel" style="margin-top:22px"><h2 id="trackTitle">No song selected</h2><audio id="audio" controls style="width:100%"></audio><div class="controls" style="margin-top:14px"><button id="prev" class="secondary">← Previous</button><button id="next">Next →</button><label class="muted">Volume <input id="volume" type="range" min="0" max="1" step=".05" value=".8"></label></div></div>
+<h2>Playlist</h2><ol id="playlist" class="muted"><li>Choose audio files to create your playlist.</li></ol><p class="status">Only add music you own or have permission to use.</p></section></div>
+<script>
+const picker=document.getElementById('songs'),audio=document.getElementById('audio'),title=document.getElementById('trackTitle'),list=document.getElementById('playlist'),volume=document.getElementById('volume');
+let tracks=[],current=0,urls=[];
+picker.addEventListener('change',()=>{urls.forEach(URL.revokeObjectURL);tracks=[...picker.files];urls=tracks.map(f=>URL.createObjectURL(f));current=0;render();if(tracks.length)play(0)});
+function render(){list.innerHTML='';if(!tracks.length){list.innerHTML='<li>Choose audio files to create your playlist.</li>';title.textContent='No song selected';return}tracks.forEach((f,i)=>{const li=document.createElement('li');const b=document.createElement('button');b.className='secondary';b.style.margin='5px';b.textContent=f.name;b.addEventListener('click',()=>play(i));li.appendChild(b);list.appendChild(li)})}
+function play(i){if(!tracks.length)return;current=(i+tracks.length)%tracks.length;audio.src=urls[current];title.textContent=tracks[current].name;audio.play().catch(()=>{});renderActive()}
+function renderActive(){[...list.children].forEach((li,i)=>{const b=li.querySelector('button');if(b)b.style.outline=i===current?'2px solid #00d5ff':''})}
+document.getElementById('prev').onclick=()=>play(current-1);document.getElementById('next').onclick=()=>play(current+1);audio.addEventListener('ended',()=>play(current+1));volume.addEventListener('input',()=>audio.volume=Number(volume.value));audio.volume=.8;
+</script></body></html>
